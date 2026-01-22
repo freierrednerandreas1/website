@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt – Trauredner</title>
     <link rel="stylesheet" href="style.css">
-	<!-- Font Awesome für Social Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome für Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -27,15 +27,15 @@
             </div>
         </div>
 
-        <a href="kontakt.html"class="active">Kontakt</a>
+        <a href="kontakt.html" class="active">Kontakt</a>
     </nav>
-		<div class="nav-meta">
-    <div class="hamburger">☰</div>
-    <div class="meta-dropdown">
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
+    <div class="nav-meta">
+        <div class="hamburger">☰</div>
+        <div class="meta-dropdown">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+        </div>
     </div>
-</div>
 </header>
 
 <section class="section light contact">
@@ -51,11 +51,9 @@
 
             <p class="map-info">
                 <strong> <br> Aufträge werden grundsätzlich ohne Entfernungslimit angenommen. <br>
-                Áuch kurzfristige Aufträge sind möglich! <br>				<br> </strong>
-				Das persönliche Erstgespräch ist kostenfrei. Hier besprechen wir in ca. 60 Minuten die Rahmenbedingungen ganz nach euren Vorstellungen und ihr werdet von mir unverbindlich beraten.<br>
-				<br> 
-				Damit ich die Anfrage gezielter beantworten kann, bitte ich euch, Informationen zum Datum und der Location sowie weitere relevante Informationen im Kontaktformular zu hinterlassen. <br>
-				<br> <br><br>
+                Áuch kurzfristige Aufträge sind möglich! <br> <br> </strong>
+                Das persönliche Erstgespräch ist kostenfrei. Hier besprechen wir in ca. 60 Minuten die Rahmenbedingungen ganz nach euren Vorstellungen und ihr werdet von mir unverbindlich beraten.<br><br>
+                Damit ich die Anfrage gezielter beantworten kann, bitte ich euch, Informationen zum Datum und der Location sowie weitere relevante Informationen im Kontaktformular zu hinterlassen. <br><br>
             </p>
 
             <p class="map-info contact-extra">
@@ -69,12 +67,12 @@
             <h2>Kontakt</h2>
             <p>Ich freue mich auf eure Nachricht! <br> </p>
 
-            <form class="contact-form" onsubmit="return sendMessage(event)" name="kontakt" method="POST" data-netlify="true">
-  <input type="hidden" name="form-name" value="kontakt">
-			
+            <form class="contact-form" name="kontakt" method="POST" data-netlify="true">
+                <!-- Netlify Hidden Input -->
+                <input type="hidden" name="form-name" value="kontakt">
 
                 <label>Art der Anfrage <span class="required">*</span></label>
-                <select id="anfrageArt" required>
+                <select name="anfrageArt" required>
                     <option value="" disabled selected>Bitte wählen</option>
                     <option>Freie Trauung</option>
                     <option>Trauerfeier</option>
@@ -85,34 +83,31 @@
                 </select>
 
                 <label>Euer Name <span class="required">*</span></label>
-                <input type="text" id="name" required>
+                <input type="text" name="name" required>
 
-				<label>Datum der Feier <span class="required">*</span></label>
-                <input type="date" id="datum" required>
+                <label>Datum der Feier <span class="required">*</span></label>
+                <input type="date" name="datum" required>
 
                 <label>Ort der Feier <span class="required">*</span></label>
-                <input type="text" id="ort" required>
+                <input type="text" name="ort" required>
 
                 <label>E-Mail-Adresse <span class="required">*</span></label>
-                <input type="email" id="email" required>
+                <input type="email" name="email" required>
 
                 <label>Telefonnummer <span class="required">*</span></label>
-                <input type="tel" id="telefon" required>
+                <input type="tel" name="telefon" required>
 
                 <label>Eure Nachricht <span class="required">*</span></label>
-                <textarea id="message" rows="7" required></textarea>
+                <textarea name="message" rows="7" required></textarea>
 
-<div class="privacy-consent">
-  <input type="checkbox" id="privacy" required>
-  <label for="privacy">
-    Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere diese.
-  </label>
-</div>
+                <div class="privacy-consent">
+                    <input type="checkbox" name="privacy" required>
+                    <label>
+                        Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere diese.
+                    </label>
+                </div>
 
-
-
-                <button type="submit" id="submitBtn"
-                        title="Bitte füllen Sie zuerst alle mit * markierten Felder aus">
+                <button type="submit" id="submitBtn">
                     Unverbindliche Anfrage für ein kostenfreies Erstgespräch senden
                 </button>
 
@@ -126,36 +121,34 @@
 </section>
 
 <footer>
-  <div class="footer-container">
+    <div class="footer-container">
 
+        <!-- Social Media -->
+        <div class="footer-social">
+            <a href="https://www.instagram.com/freierrednerandreas" target="_blank">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+            <a href="https://wa.me/4915908133212" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+        
+        <!-- Kontaktinfos -->
+        <div class="footer-contact">
+            <p>© 2025 Andreas Hartmann</p>
+            <p>E-Mail: <a href="mailto:andreas_hartmann@mail.de">andreas_hartmann@mail.de</a></p>
+            <p>Tel: <a href="tel:+4915908133212">+49 1590 8133212</a></p>
+        </div>
+        
+        <!-- Rechtliches & Links -->
+        <div class="footer-links">
+            <a href="impressum.html">Impressum</a> |
+            <a href="datenschutz.html">Datenschutz</a>
+        </div>
 
-
-    <!-- Social Media -->
-    <div class="footer-social">
-      <a href="https://www.instagram.com/deinprofil" target="_blank">
-        <i class="fab fa-instagram"></i>
-        <span>Instagram</span>
-      </a>
-      <a href="https://wa.me/4915908133212" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        <span>WhatsApp</span>
-      </a>
     </div>
-	
-    <!-- Kontaktinfos -->
-    <div class="footer-contact">
-      <p>© 2025 Andreas Hartmann</p>
-      <p>E-Mail: <a href="mailto:andreas_hartmann@mail.de">andreas_hartmann@mail.de</a></p>
-      <p>Tel: <a href="tel:+4915908133212">+49 1590 8133212</a></p>
-    </div>
-	
-    <!-- Rechtliches & Links -->
-	<div class="footer-links">
-      <a href="impressum.html">Impressum</a> |
-      <a href="datenschutz.html">Datenschutz</a>
-    </div>
-
-  </div>
 </footer>
 
 <script src="script.js"></script>
@@ -164,18 +157,14 @@
 <script>
 function initMap() {
     const center = { lat: 48.4013, lng: 10.6025 }; // Zusmarshausen
-
     new google.maps.Map(document.getElementById("map"), {
         zoom: 10,
         center: center,
         disableDefaultUI: true,
-        styles: [
-            { featureType: "poi", stylers: [{ visibility: "off" }] }
-        ]
+        styles: [{ featureType: "poi", stylers: [{ visibility: "off" }] }]
     });
 }
 </script>
-
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -190,17 +179,15 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("click", function () {
         dropdown.classList.remove("active");
     });
-
 });
 </script>
 
 <!-- Cookie-Banner -->
 <div id="cookie-banner">
-  <p>Diese Website verwendet Cookies, z. B. für Google Maps. 
-     Durch Klicken auf „Akzeptieren“ stimmen Sie der Nutzung zu.</p>
-  <button id="accept-cookies">Akzeptieren</button>
+    <p>Diese Website verwendet Cookies, z. B. für Google Maps. 
+       Durch Klicken auf „Akzeptieren“ stimmen Sie der Nutzung zu.</p>
+    <button id="accept-cookies">Akzeptieren</button>
 </div>
-
 
 </body>
 </html>
