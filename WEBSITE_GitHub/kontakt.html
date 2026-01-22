@@ -69,7 +69,11 @@
             <h2>Kontakt</h2>
             <p>Ich freue mich auf eure Nachricht! <br> </p>
 
-            <form class="contact-form" onsubmit="return sendMessage(event)">
+            <form 
+			name="kontakt" method="POST" data-netlify="true">
+  <input type="hidden" name="form-name" value="kontakt">
+  
+			class="contact-form" onsubmit="return sendMessage(event)">
 
                 <label>Art der Anfrage <span class="required">*</span></label>
                 <select id="anfrageArt" required>
