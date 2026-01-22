@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt – Trauredner</title>
+    <link rel="stylesheet" href="style.css">
+	<!-- Font Awesome für Social Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Trauredner</div>
+    <nav>
+        <a href="index.html">Start</a>
+        <a href="about.html">Über mich</a>
+
+        <div class="nav-offer">
+            <a href="angebot.html">Angebot</a>
+            <div class="offer-dropdown">
+                <a href="trauung.html">Freie Trauung</a>
+                <a href="trauerfeier.html">Trauerfeier</a>
+                <a href="kinderwillkommensfest.html">Kinderwillkommensfest</a>
+                <a href="destinationwedding.html">Destination Wedding</a>
+                <a href="eheerneuerung.html">Eheerneuerung / Ehejubiläum</a>
+            </div>
+        </div>
+
+        <a href="kontakt.html"class="active">Kontakt</a>
+    </nav>
+		<div class="nav-meta">
+    <div class="hamburger">☰</div>
+    <div class="meta-dropdown">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </div>
+</div>
+</header>
+
+<section class="section light contact">
+
+    <div class="contact-grid-2col">
+
+        <!-- Linke Spalte: Karte -->
+        <div class="contact-map-box">
+            <h3>Mein Einsatzgebiet</h3>
+
+            <!-- Google Maps (ohne Radius) -->
+            <div id="map" class="map-container"></div>
+
+            <p class="map-info">
+                <strong> <br> Aufträge werden grundsätzlich ohne Entfernungslimit angenommen. <br>
+                Áuch kurzfristige Aufträge sind möglich! <br>				<br> </strong>
+				Das persönliche Erstgespräch ist kostenfrei. Hier besprechen wir in ca. 60 Minuten die Rahmenbedingungen ganz nach euren Vorstellungen und ihr werdet von mir unverbindlich beraten.<br>
+				<br> 
+				Damit ich die Anfrage gezielter beantworten kann, bitte ich euch, Informationen zum Datum und der Location sowie weitere relevante Informationen im Kontaktformular zu hinterlassen. <br>
+				<br> <br><br>
+            </p>
+
+            <p class="map-info contact-extra">
+                E-Mail: <strong>andreas_hartmann@mail.de</strong><br>
+                Telefon: <strong>+49 1590 8133212</strong>
+            </p>
+        </div>
+
+        <!-- Rechte Spalte: Kontaktformular -->
+        <div class="contact-form-box">
+            <h2>Kontakt</h2>
+            <p>Ich freue mich auf eure Nachricht! <br> </p>
+
+            <form class="contact-form" onsubmit="return sendMessage(event)">
+
+                <label>Art der Anfrage <span class="required">*</span></label>
+                <select id="anfrageArt" required>
+                    <option value="" disabled selected>Bitte wählen</option>
+                    <option>Freie Trauung</option>
+                    <option>Trauerfeier</option>
+                    <option>Kinderwillkommensfest</option>
+                    <option>Destination-Wedding</option>
+                    <option>Eheerneuerung/Ehejubiläum</option>
+                    <option>Sonstiges</option>
+                </select>
+
+                <label>Euer Name <span class="required">*</span></label>
+                <input type="text" id="name" required>
+
+				<label>Datum der Feier <span class="required">*</span></label>
+                <input type="date" id="datum" required>
+
+                <label>Ort der Feier <span class="required">*</span></label>
+                <input type="text" id="ort" required>
+
+                <label>E-Mail-Adresse <span class="required">*</span></label>
+                <input type="email" id="email" required>
+
+                <label>Telefonnummer <span class="required">*</span></label>
+                <input type="tel" id="telefon" required>
+
+                <label>Eure Nachricht <span class="required">*</span></label>
+                <textarea id="message" rows="7" required></textarea>
+
+<div class="privacy-consent">
+  <input type="checkbox" id="privacy" required>
+  <label for="privacy">
+    Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere diese.
+  </label>
+</div>
+
+
+
+                <button type="submit" id="submitBtn"
+                        title="Bitte füllen Sie zuerst alle mit * markierten Felder aus">
+                    Unverbindliche Anfrage für ein kostenfreies Erstgespräch senden
+                </button>
+
+            </form>
+
+            <p id="form-response" class="form-response"></p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+  <div class="footer-container">
+
+
+
+    <!-- Social Media -->
+    <div class="footer-social">
+      <a href="https://www.instagram.com/deinprofil" target="_blank">
+        <i class="fab fa-instagram"></i>
+        <span>Instagram</span>
+      </a>
+      <a href="https://wa.me/4915908133212" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+	
+    <!-- Kontaktinfos -->
+    <div class="footer-contact">
+      <p>© 2025 Andreas Hartmann</p>
+      <p>E-Mail: <a href="mailto:andreas_hartmann@mail.de">andreas_hartmann@mail.de</a></p>
+      <p>Tel: <a href="tel:+4915908133212">+49 1590 8133212</a></p>
+    </div>
+	
+    <!-- Rechtliches & Links -->
+	<div class="footer-links">
+      <a href="impressum.html">Impressum</a> |
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+<!-- Google Maps API -->
+<script>
+function initMap() {
+    const center = { lat: 48.4013, lng: 10.6025 }; // Zusmarshausen
+
+    new google.maps.Map(document.getElementById("map"), {
+        zoom: 10,
+        center: center,
+        disableDefaultUI: true,
+        styles: [
+            { featureType: "poi", stylers: [{ visibility: "off" }] }
+        ]
+    });
+}
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const hamburger = document.querySelector(".hamburger");
+    const dropdown = document.querySelector(".meta-dropdown");
+
+    hamburger.addEventListener("click", function (e) {
+        e.stopPropagation();
+        dropdown.classList.toggle("active");
+    });
+
+    document.addEventListener("click", function () {
+        dropdown.classList.remove("active");
+    });
+
+});
+</script>
+
+<!-- Cookie-Banner -->
+<div id="cookie-banner">
+  <p>Diese Website verwendet Cookies, z. B. für Google Maps. 
+     Durch Klicken auf „Akzeptieren“ stimmen Sie der Nutzung zu.</p>
+  <button id="accept-cookies">Akzeptieren</button>
+</div>
+
+
+</body>
+</html>
