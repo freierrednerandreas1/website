@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome für Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Leaflet CSS für OpenStreetMap -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-sA+3q5R+coNROXbJz7XelBfvjFhF4b+6kZ7r7M0kPQo=" crossorigin=""/>
+    <style>
+        /* Karte stylen */
+        .map-container {
+            width: 100%;
+            height: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
 
@@ -46,14 +59,13 @@
         <div class="contact-map-box">
             <h3>Mein Einsatzgebiet</h3>
 
-            <!-- Google Maps (ohne Radius) -->
             <div id="map" class="map-container"></div>
 
             <p class="map-info">
-                <strong> <br> Aufträge werden grundsätzlich ohne Entfernungslimit angenommen. <br>
-                Áuch kurzfristige Aufträge sind möglich! <br> <br> </strong>
+                <strong><br>Aufträge werden grundsätzlich ohne Entfernungslimit angenommen.<br>
+                Auch kurzfristige Aufträge sind möglich!<br><br></strong>
                 Das persönliche Erstgespräch ist kostenfrei. Hier besprechen wir in ca. 60 Minuten die Rahmenbedingungen ganz nach euren Vorstellungen und ihr werdet von mir unverbindlich beraten.<br><br>
-                Damit ich die Anfrage gezielter beantworten kann, bitte ich euch, Informationen zum Datum und der Location sowie weitere relevante Informationen im Kontaktformular zu hinterlassen. <br><br>
+                Damit ich die Anfrage gezielter beantworten kann, bitte ich euch, Informationen zum Datum und der Location sowie weitere relevante Informationen im Kontaktformular zu hinterlassen.<br><br>
             </p>
 
             <p class="map-info contact-extra">
@@ -68,7 +80,6 @@
             <p>Ich freue mich auf eure Nachricht! <br> </p>
 
             <form class="contact-form" name="kontakt" method="POST" data-netlify="true">
-                <!-- Netlify Hidden Input -->
                 <input type="hidden" name="form-name" value="kontakt">
 
                 <label>Art der Anfrage <span class="required">*</span></label>
@@ -89,7 +100,7 @@
                 <input type="date" name="datum" required>
 
                 <label>Ort der Feier <span class="required">*</span></label>
-                <input type="text" name="ort" required>
+                <input type="text" name="ort">
 
                 <label>E-Mail-Adresse <span class="required">*</span></label>
                 <input type="email" name="email" required>
@@ -123,7 +134,6 @@
 <footer>
     <div class="footer-container">
 
-        <!-- Social Media -->
         <div class="footer-social">
             <a href="https://www.instagram.com/freierrednerandreas" target="_blank">
                 <i class="fab fa-instagram"></i>
@@ -134,15 +144,13 @@
                 <span>WhatsApp</span>
             </a>
         </div>
-        
-        <!-- Kontaktinfos -->
+
         <div class="footer-contact">
             <p>© 2025 Andreas Hartmann</p>
             <p>E-Mail: <a href="mailto:andreas_hartmann@mail.de">andreas_hartmann@mail.de</a></p>
             <p>Tel: <a href="tel:+4915908133212">+49 1590 8133212</a></p>
         </div>
-        
-        <!-- Rechtliches & Links -->
+
         <div class="footer-links">
             <a href="impressum.html">Impressum</a> |
             <a href="datenschutz.html">Datenschutz</a>
@@ -151,23 +159,24 @@
     </div>
 </footer>
 
-<script src="script.js"></script>
-
-<!-- Google Maps API -->
-<script>
-function initMap() {
-    const center = { lat: 48.4013, lng: 10.6025 }; // Zusmarshausen
-    new google.maps.Map(document.getElementById("map"), {
-        zoom: 10,
-        center: center,
-        disableDefaultUI: true,
-        styles: [{ featureType: "poi", stylers: [{ visibility: "off" }] }]
-    });
-}
-</script>
+<!-- Leaflet JS für OpenStreetMap -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-oQmNR3VyhVchKZtY8v6z9Zgkq4r3QYXwFlDaxw3v7yk=" crossorigin=""></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+    // Leaflet Karte
+    const map = L.map('map').setView([48.4013, 10.6025], 10);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([48.4013, 10.6025]).addTo(map)
+        .bindPopup('Einsatzgebiet: Zusmarshausen')
+        .openPopup();
+
+    // Hamburger Menü
     const hamburger = document.querySelector(".hamburger");
     const dropdown = document.querySelector(".meta-dropdown");
 
@@ -184,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <!-- Cookie-Banner -->
 <div id="cookie-banner">
-    <p>Diese Website verwendet Cookies, z. B. für Google Maps. 
+    <p>Diese Website verwendet Cookies, z. B. für Karten. 
        Durch Klicken auf „Akzeptieren“ stimmen Sie der Nutzung zu.</p>
     <button id="accept-cookies">Akzeptieren</button>
 </div>

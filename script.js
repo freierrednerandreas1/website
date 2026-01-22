@@ -54,7 +54,6 @@ document.querySelectorAll(".contact-form input, .contact-form textarea, .contact
     });
 });
 
-
 // ==============================
 // Testimonials Slider (Erfahrungsberichte)
 // ==============================
@@ -62,10 +61,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const testimonials = document.querySelectorAll(".testimonial");
     const dots = document.querySelectorAll(".testimonial-dots .dot");
     let current = 0;
-	
-	// Initiales Testimonial setzen
-testimonials[0].classList.add("active");
-dots[0].classList.add("active");
+
+    // Initiales Testimonial setzen
+    testimonials[0].classList.add("active");
+    dots[0].classList.add("active");
 
     let interval = setInterval(nextTestimonial, 8000);
 
@@ -93,53 +92,67 @@ dots[0].classList.add("active");
 });
 
 // ==============================
-// Google Maps – Kontaktseite
+// Leaflet / OpenStreetMap – Kontaktseite + Cookie-Banner
 // ==============================
-function initMap() {
-    const center = { lat: 48.4013, lng: 10.6025 }; // An der Ziegelei 3A, Zusmarshausen
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 15,
-        center: center,
-        disableDefaultUI: true,
-        styles: [
-            { featureType: "poi", stylers: [{ visibility: "off" }] }
-        ]
-    });
-
-    // Marker setzen
-    new google.maps.Marker({
-        position: center,
-        map: map,
-        title: "An der Ziegelei 3A, 86441 Zusmarshausen"
-    });
-}
-
-
-// Cookie-Banner Funktion
 document.addEventListener("DOMContentLoaded", function() {
     const banner = document.getElementById("cookie-banner");
     const acceptBtn = document.getElementById("accept-cookies");
 
-    // Prüfen, ob Nutzer schon zugestimmt hat
-    if (!localStorage.getItem("cookiesAccepted")) {
-        banner.style.display = "flex";
-    } else {
-        loadMap(); // Map sofort laden, wenn schon akzeptiert
+    // Funktion zum Laden von Leaflet + Karte
+    function loadLeaflet() {
+        // Leaflet CSS einfügen
+        if (!document.getElementById('leaflet-css')) {
+            const link = document.createElement('link');
+            link.id = 'leaflet-css';
+            link.rel = 'stylesheet';
+            link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+            link.integrity = 'sha256-o9N1j6U9SxkO3i/nZrK3kGHYX1mKFl1x4wAJ2nM/6Lk=';
+            link.crossOrigin = '';
+            document.head.appendChild(link);
+        }
+
+        // Leaflet JS einfügen
+        if (!document.getElementById('leaflet-js')) {
+            const script = document.createElement('script');
+            script.id = 'leaflet-js';
+            script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+            script.integrity = 'sha256-o9N1j6U9SxkO3i/nZrK3kGHYX1mKFl1x4wAJ2nM/6Lk=';
+            script.crossOrigin = '';
+            script.onload = initLeafletMap;
+            document.body.appendChild(script);
+        } else {
+            // Falls schon geladen, direkt initialisieren
+            initLeafletMap();
+        }
+    }
+
+    // Karte initialisieren
+    function initLeafletMap() {
+        const center = [48.4013, 10.6025]; // Zusmarshausen
+        const map = L.map('map').setView(center, 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        L.marker(center).addTo(map)
+            .bindPopup('An der Ziegelei 3A, 86441 Zusmarshausen')
+            .openPopup();
+    }
+
+    // Prüfen, ob Cookies schon akzeptiert wurden
+    if (localStorage.getItem("cookiesAccepted")) {
+        if (banner) banner.style.display = "none";
+        loadLeaflet();
     }
 
     // Klick auf Akzeptieren
-    acceptBtn.addEventListener("click", function() {
-        localStorage.setItem("cookiesAccepted", "true");
-        banner.style.display = "none";
-        loadMap(); // Map laden
-    });
+    if (acceptBtn) {
+        acceptBtn.addEventListener("click", function() {
+            localStorage.setItem("cookiesAccepted", "true");
+            if (banner) banner.style.display = "none";
+            loadLeaflet();
+        });
+    }
 });
-
-// Google Maps erst laden, wenn Zustimmung erfolgt
-function loadMap() {
-    const script = document.createElement("script");
-    script.src = "https://maps.googleapis.com/maps/api/js?callback=initMap";
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-}
